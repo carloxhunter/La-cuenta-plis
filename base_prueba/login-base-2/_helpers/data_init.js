@@ -110,6 +110,9 @@ function createLocals(cb){
             function(callback){
                 userCreate('tioaceite4000','123456789','tio','aceite',locals[2],callback);
             },
+            function(callback){
+                userCreate('yoni123','123456789','yoni','bravo', locals[0], callback);
+            },
         ],cb);
         
     }        
@@ -126,6 +129,9 @@ function createProducts(cb){
         },
         function(callback){
             productCreate('1 galleta','frita',10000,locals[1],callback);
+        },
+        function(callback){
+            productCreate('pan','weno',500,locals[1],callback);
         },
     ],cb);
 }
