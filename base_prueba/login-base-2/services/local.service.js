@@ -1,4 +1,4 @@
-const config = require('config.json');
+//const config = require('config.json');
 const db = require('_helpers/db');
 const Local = db.Local;
 const User = db.User;
@@ -60,6 +60,7 @@ async function lupdate(){
         temp=JSON.stringify(user);
         
         console.log(JSON.stringify(user));
+        console.log("wooho dale krakk");
 
 
         //await Local.findIdAndRemove(id);
