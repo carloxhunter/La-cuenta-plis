@@ -1,7 +1,7 @@
 var async = require('async');
-var User = require('../users/user.model');
-var Local = require('../non_userobjects/local.model');
-var Product = require('../non_userobjects/product.model');
+var User = require('../models/user.model');
+var Local = require('../models/local.model');
+var Product = require('../models/product.model');
 const db =require('../_helpers/db');
 //const config = require('config.json');
 //const jwt = require('_helpers/jwt');
@@ -19,7 +19,7 @@ var products = [];
 
 async function localCreate(localname, localdes, localloc, localrut, callback){
     localdata={localName:localname,localDes:localdes,localLoc:localloc,localRut:localrut};
-    if ( await Local.findOne({ localName: localname }) ||  await Local.findOne({localName:localname})) {
+    if ( await Local.findOne({ localName: localname }) ||  await Local.findOne({localRut:localrut})) {
         //throw ' local nombre o id usados ';
         console.log("ya se subieron esos locales");
     }
