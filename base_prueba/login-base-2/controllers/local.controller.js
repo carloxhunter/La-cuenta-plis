@@ -2,11 +2,18 @@ const express = require('express');
 var router = express.Router();
 const localS=require('../services/local.service');
 
-router.get('/', lgetAll);
-router.get('/:id',lgetById);
-router.put('/:id',lupdate);
-router.post('/create', localS.lcreate);
-router.delete('/:id',_ldelete);
+router.get('/', lgetAll); //claro
+router.get('/:id',lgetById); //claro
+router.put('/:id',lupdate); //pendiente
+router.post('/create', lcreate); //claro
+router.delete('/:id',_ldelete); //claro
+
+function lcreate(req, res, next){
+    localS.lcreate(req.body)
+    .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
 
 function lgetAll(req, res, next) {
     localS.lgetAll()
@@ -17,7 +24,7 @@ function lgetAll(req, res, next) {
 
 function lgetById(req, res, next) {
     localS.lgetById(req.params.id)
-        .then(local => user ? res.json(local) : res.sendStatus(404))
+        .then(local => local ? res.json(local) : res.sendStatus(404))
         .catch(err => next(err));
 }
 

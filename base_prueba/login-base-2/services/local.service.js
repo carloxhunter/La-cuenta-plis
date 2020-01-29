@@ -25,8 +25,29 @@ async function lgetAll(){
 }
 
 async function lgetById(id){
-    console.log('yirititito');
-    return await Local.findById(id);
+    
+    var local = await Local.findById(id);
+    
+    var user = await User.find({local:id});
+    
+    var prod = await Product.find({local:id});
+    var result = {Local:local.datoslocal, Trabajadores:[String], Productos:[String]};
+    //var objetos_delete = {local1, Des:"Junto con el local, se eliminaran", Deletedusers:[String], Deletedproducts:[String]};
+        for (var i=0, len=user.length; i<len; i++){
+            var yiro2=user[i].usernameid.username;
+            result.Trabajadores.push(yiro2);
+            
+     }
+        console.log('yirititito');    
+        for (var j=0, lenj=prod.length; j<lenj;j++){
+            var temp=prod[j].nameid.productName;
+            //console.log(JSON.stringify(prod[j].nameid.id));
+            result.Productos.push(temp);
+            
+     }
+
+     console.log(JSON.stringify(result));
+    return result;
 }
 
 async function lcreate(localP){
@@ -79,3 +100,6 @@ async function lupdate(){
        
         return objetos_delete;
     }
+
+
+    
