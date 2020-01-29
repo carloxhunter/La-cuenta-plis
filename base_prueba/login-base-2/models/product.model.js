@@ -12,4 +12,10 @@ ProductSchema.virtual('url').get(function(){
     return '/product/'+this._id;
 });
 
+ProductSchema.virtual('nameid').get(function(){
+    var prodreturn = {id:this._id, productName:this.productName};
+    return prodreturn;})
+
+ProductSchema.set('toJSON', { virtuals: true });
+ProductSchema.set('toObject', { virtuals: true });
 module.exports=mongoose.model('Product', ProductSchema);

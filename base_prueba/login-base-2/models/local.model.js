@@ -15,4 +15,12 @@ LocalSchema.virtual('url').get(function(){
     return '/local/'+this._id;
 });
 
+LocalSchema.virtual('datoslocal').get(function(){
+    var localreturn = {id:this._id, localName:this.localName, localDes:this.localDes,
+    localLoc:this.localLoc, localRut:this.localRut};
+        return localreturn;})
+
+LocalSchema.set('toJSON', { virtuals: true });
+LocalSchema.set('toObject', { virtuals: true });
+
 module.exports = mongoose.model('Local',LocalSchema);

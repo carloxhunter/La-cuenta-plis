@@ -55,13 +55,27 @@ async function lupdate(){
 }
 
     async function _ldelete(id){
-        var user = await User.find({local:id}).distinct('_id');
-        console.log('yirote');
-        temp=JSON.stringify(user);
-        
-        console.log(JSON.stringify(user));
-        console.log("wooho dale krakk");
+        //var user = await User.find({local:id}).distinct('_id');
+        var user = await User.find({local:id});
+        var prod =await Product.find({local:id});
+        var local = await  Local.findById(id);
+        var local1 = local.datoslocal;
+        //console.log(local1);
+        var objetos_delete = {local1, Des:"Junto con el local, se eliminaran", Deletedusers:[String], Deletedproducts:[String]};
+        for (var i=0, len=user.length; i<len; i++){
+            var yiro2=user[i].usernameid.username;
+            objetos_delete.Deletedusers.push(yiro2);
+            await User.deleteOne({'_id':user[i].usernameid.id}); //descomentar
+     }
+            
+        for (var j=0, lenj=prod.length; j<lenj;j++){
+            var temp=prod[j].nameid.productName;
+            //console.log(JSON.stringify(prod[j].nameid.id));
+            objetos_delete.Deletedproducts.push(temp);
+            await Product.deleteOne({'_id':prod[j].nameid.id}); //descomentar
+     }
 
-
-        //await Local.findIdAndRemove(id);
+        await Local.deleteOne({'_id':id}); //descomentar
+       
+        return objetos_delete;
     }
