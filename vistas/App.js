@@ -1,113 +1,259 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image, Button, Alert, ImageBackground, TouchableOpacity, TextInput, ScrollView} from 'react-native';
-import { Video } from 'expo-av';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  Alert,
+  ImageBackground,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
+import { Input, Divider } from 'react-native-elements';
+import { FontAwesome } from '@expo/vector-icons';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-class Prueba extends Component{
-  saludo = () => {Alert.alert('Hola belleza!') }
-
-
-  render(){
-
-    return(
-      <ImageBackground source= { require('./assets/sakura.jpg')} style = {styles.container}>
-        <ScrollView>
-        <View style = {styles.header}>
-
-          <View style={styles.headerLeft}>
-            <Image source= { require('./assets/snack-icon.png')} style = {styles.logo} />
-          </View>
-
-          <View style={styles.headerRight}>
-            <Button title = "Login" onPress = {this.saludo} style = {styles.boton}/>
-          </View>
-
+class RegisterScreen extends React.Component {
+  saludo = () => {
+    Alert.alert('Hola belleza!');
+  };
+  render() {
+    return (
+      <ImageBackground
+        source={require('./assets/fondo.png')}
+        style={styles.container}>
+        <View style={styles.header}>
+          <Image source={require('./assets/logo.png')} style={styles.logo} />
         </View>
 
-        <View style={[styles.body, styles.negrita]}>
-          <TouchableOpacity>
-            <Text> "LaCuentaPlis!" </Text>
-            <TextInput placeholder = "Ingrese Usuario" placeholderTextColor = "white" maxLength = {15} style = {{ borderWidth : 1, borderColor : "black", padding : 5, marginTop : 10, backgroundColor : 'pink' }}></TextInput>
-
-            <Video
-              source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
-              rate={1.0}
-              volume={1.0}
-              isMuted={false}
-              resizeMode="cover"
-              shouldPlay={false}
-              useNativeControls={true}
-              isLooping
-              style={{ width: 300, height: 300 }}
+        <View style={styles.body}>
+          <View style={styles.user}>
+            <Input
+              leftIcon={<FontAwesome name="user" size={20} color="white" />}
+              label="Nombre de Usuario"
+              placeholder=" Nombre Apellido"
+              placeholderTextColor="white"
+              maxLength={15}
+              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
             />
-
-          </TouchableOpacity>
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-          <Image source= { require('./assets/Shaoran.PNG')} style = {styles.logo} />
-
+          </View>
+          <View style={styles.user}>
+            <Input
+              secureTextEntry={true}
+              leftIcon={<FontAwesome name="key" size={20} color="white" />}
+              label="Contraseña"
+              placeholder="*********"
+              placeholderTextColor="white"
+              maxLength={15}
+              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
+            />
+          </View>
+          <View style={styles.user}>
+            <Input
+              secureTextEntry={true}
+              leftIcon={<FontAwesome name="key" size={20} color="white" />}
+              label="Confirmar contraseña"
+              placeholder="*********"
+              placeholderTextColor="white"
+              maxLength={15}
+              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
+            />
+          </View>
         </View>
-        </ScrollView>
+
+        <View style={styles.boton}>
+          <Button color="#9ACD32" title="Registrar!" onPress={this.saludo} />
+        </View>
+        
+        <Divider style={styles.divider} />
+        <View style={styles.footer}>
+          <View style={styles.footerLeft}>
+            <Text style={styles.texto}>
+              {' '}
+              Ya tienes cuenta? Inicia sesión haciendo click en Ingresar!{' '}
+            </Text>
+          </View>
+
+          <View style={styles.footerRight}>
+            <Button
+              color="#4682B4"
+              title="Ingresar!"
+              onPress={() => this.props.navigation.navigate('Login')}
+              style={styles.boton}
+            />
+          </View>
+        </View>
       </ImageBackground>
-    )
-  } 
+    );
+  }
+}
+
+class LoginScreen extends React.Component {
+  saludo = () => {
+    Alert.alert('Hola belleza!');
+  };
+
+  render() {
+    return (
+      <ImageBackground
+        source={require('./assets/fondo.png')}
+        style={styles.container}>
+        <View style={styles.body}>
+          <View style={styles.header}>
+            <Image source={require('./assets/logo.png')} style={styles.logo} />
+          </View>
+
+          <View style={styles.user}>
+            <FontAwesome name="user" size={50} color="white" />
+            <TextInput
+              placeholder="Ingrese Usuario"
+              placeholderTextColor="white"
+              maxLength={15}
+              style={{
+                borderWidth: 2,
+                borderColor: 'white',
+                borderRadius: 5,
+                padding: 10,
+                marginStart: 10,
+                marginTop: 10,
+                backgroundColor: '',
+              }}
+            />
+          </View>
+
+          <View style={styles.user}>
+            <FontAwesome name="key" size={50} color="white" />
+            <TextInput
+              placeholder="Ingrese Contraseña"
+              placeholderTextColor="white"
+              style={{
+                borderWidth: 2,
+                borderColor: 'white',
+                borderRadius: 5,
+                padding: 10,
+                marginStart: 10,
+                marginTop: 10,
+                backgroundColor: '',
+              }}
+            />
+          </View>
+        </View>
+        <View style={styles.boton}>
+          <Button color="#9ACD32" title="Ingresar!" onPress={this.saludo} />
+        </View>
+
+        <Divider style={styles.divider} />
+
+        <View style={styles.footer}>
+          <View style={styles.footerLeft}>
+            <Text style={styles.texto}>
+              {' '}
+              Nuevo? Crea tu usuario haciendo click en Registrarse!{' '}
+            </Text>
+          </View>
+
+          <View style={styles.footerRight}>
+            <Button
+              color="#4682B4"
+              title="Registrarse!"
+              onPress={() => this.props.navigation.navigate('Register')}
+              style={styles.boton}
+            />
+          </View>
+        </View>
+      </ImageBackground>
+    );
+  }
+}
+
+const RootStack = createStackNavigator(
+  {
+    Login: LoginScreen,
+    Register: RegisterScreen,
+  },
+  {
+    initialRouteName: 'Login',
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex : 1,
-    justifyContent : 'center',
-    flexDirection : 'column',
-    marginTop : 25
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'column',
+    marginTop: 25,
   },
 
   header: {
-    flex: 0.4,
-    flexDirection : 'row',
-    marginTop : 25,
-    padding: 5
+    flex: 0.3,
+    flexDirection: 'row',
+    marginTop: 0,
+    padding: 5,
   },
 
-  headerLeft: {
-    flex : 1,
-    //backgroundColor : 'white'
+  user: {
+    flex: 0.5,
+    flexDirection: 'row',
+    marginTop: 10,
+    padding: 5,
+    alignItems: 'center',
   },
 
-  headerRight: {
-    flex : 1,
-    //backgroundColor : 'white'
+  footer: {
+    flex: 0.3,
+    flexDirection: 'row',
+    marginTop: 0,
+    padding: 5,
+    alignItems: 'center',
   },
 
-  negrita:{
-    fontWeight : 'bold'
+  footerLeft: {
+    flex: 1,
   },
 
-  boton : {
-    backgroundColor : 'pink',
-    borderRadius : 5,
-    padding : 20
+  footerRight: {
+    flex: 1,
+    marginEnd: 5,
+  },
+
+  texto: {
+    fontFamily: 'Verdana',
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+  },
+
+  divider: {
+    marginVertical: 2,
+    backgroundColor: '#C0C0C0',
+  },
+
+  boton: {
+    borderRadius: 5,
+    padding: 20,
+    alignItems: 'center',
   },
 
   body: {
-    flex : 1,
-    //backgroundColor : 'white',
-    alignItems : 'center'
+    flex: 1,
+    alignItems: 'center',
   },
 
-  logo:{
-    width : 100,
-    height : 100,
-    borderRadius : 50,
-    resizeMode : 'contain',
-    alignItems : 'center'
+  logo: {
+    resizeMode: 'contain',
+    alignItems: 'center',
+    marginTop: 10,
   },
-
-
-})
-
-
-export default Prueba
+});

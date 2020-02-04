@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AppWeb",
-    "slug": "AppWeb",
+    "name": "vistas",
+    "slug": "vistas",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
