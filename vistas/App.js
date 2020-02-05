@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  Alert,
-  ImageBackground,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
-  SafeAreaView,
+import {StyleSheet, Text, View, Image, Button, Alert, ImageBackground, TouchableOpacity, TextInput, ScrollView, SafeAreaView, FlatList
 } from 'react-native';
-import { Input, Divider } from 'react-native-elements';
-import { FontAwesome } from '@expo/vector-icons';
+import { Card, Input, Icon, Divider, Header, PricingCard, ListItem } from 'react-native-elements';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { Video } from 'expo-av';
 
 class RegisterScreen extends React.Component {
   saludo = () => {
@@ -82,7 +72,7 @@ class RegisterScreen extends React.Component {
             <Button
               color="#4682B4"
               title="Ingresar!"
-              onPress={() => this.props.navigation.navigate('Login')}
+              onPress={() => this.props.navigation.navigate('Ingresar')}
               style={styles.boton}
             />
           </View>
@@ -93,10 +83,6 @@ class RegisterScreen extends React.Component {
 }
 
 class LoginScreen extends React.Component {
-  saludo = () => {
-    Alert.alert('Hola belleza!');
-  };
-
   render() {
     return (
       <ImageBackground
@@ -143,7 +129,8 @@ class LoginScreen extends React.Component {
           </View>
         </View>
         <View style={styles.boton}>
-          <Button color="#9ACD32" title="Ingresar!" onPress={this.saludo} />
+          <Button color="#9ACD32" title="Ingresar!" 
+              onPress={() => this.props.navigation.navigate('HomeMesero')} />
         </View>
 
         <Divider style={styles.divider} />
@@ -160,7 +147,7 @@ class LoginScreen extends React.Component {
             <Button
               color="#4682B4"
               title="Registrarse!"
-              onPress={() => this.props.navigation.navigate('Register')}
+              onPress={() => this.props.navigation.navigate('Registrar')}
               style={styles.boton}
             />
           </View>
@@ -170,13 +157,99 @@ class LoginScreen extends React.Component {
   }
 }
 
+class HomeScreen extends Component{
+  saludo = () => {Alert.alert('Hola belleza!') }
+  render(){
+  
+    return(
+      <ImageBackground source= { require('./assets/fondo.png')} style = {styles.container}>
+      <ScrollView>
+        <Header
+          backgroundColor
+          leftComponent={{ icon: 'home', color: '#fff' }}
+          centerComponent={{ text: 'Nombre Mesero', style: { color: '#fff' } }}
+          rightComponent={{ icon: 'exit-to-app', color: '#fff' }}
+        />
+        <View style={styles.body}>
+        </View>
+          <Card title="Menú" containerStyle = {styles.card}>
+             <Button
+              color='#631B33'
+              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+              title='VER' 
+              onPress={() => this.props.navigation.navigate('Menú')}
+              />
+          </Card>
+          <Card title="Mesas" containerStyle = {styles.card}>
+            <Button
+              color='#631B33'
+              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+              title='VER' />
+          </Card>
+          <Card title="Promociones del Día" containerStyle = {styles.card}>
+            <Button
+              color='#631B33'
+              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+              title='VER' /> 
+          </Card>
+        </ScrollView>
+      </ImageBackground>
+    )
+  } 
+}
+
+class MenuScreen extends Component{
+  saludo = () => {Alert.alert('Hola belleza!') }
+  render(){
+
+    return(
+      <ImageBackground source= { require('./assets/fondo.png')} style = {styles.container}>
+      <ScrollView>
+        <View style={styles.body}>
+        <Header
+          backgroundColor
+          leftComponent={{ icon: 'home', color: '#fff' }}
+          centerComponent={{ text: 'Nombre Mesero', style: { color: '#fff' } }}
+          rightComponent={{ icon: 'exit-to-app', color: '#fff' }}
+        />
+
+        <PricingCard
+          color="#A52A2A"
+          title="Mojito"
+          price = "$3000"
+          info={['Tradicional','Sabores']}
+          button={{ title: 'Agregar', icon: 'add-circle-outline' }}
+          containerStyle = {styles.precio}
+        />
+
+        <PricingCard
+          color="#A52A2A"
+          title="Piña Colada"
+          price = "$2500"
+          info={['Tradicional','0% Alcohol']}
+          button={{ title: 'Agregar', icon: 'add-circle-outline' }}
+          containerStyle = {styles.precio}
+        />
+        
+        </View>
+
+        </ScrollView>
+      </ImageBackground>
+
+    )
+  } 
+}
+
+
 const RootStack = createStackNavigator(
   {
-    Login: LoginScreen,
-    Register: RegisterScreen,
+    Ingresar: LoginScreen,
+    Registrar: RegisterScreen,
+    HomeMesero: HomeScreen,
+    Menú: MenuScreen, 
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Ingresar',
   }
 );
 
@@ -256,4 +329,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
+
+  precio:{
+    width:250,
+    height: 250,
+    textSize: 20,
+  },
+
+  
 });
