@@ -1,15 +1,17 @@
 ﻿const express = require('express');
-const router = express.Router();
-const userService = require('./user.service');
+var router = express.Router();
+const userService = require('../services/user.service');
 
 // routes
 router.post('/authenticate', authenticate);
-router.post('/register', register);
-router.get('/', getAll);
-router.get('/current', getCurrent);
-router.get('/:id', getById);
-router.put('/:id', update);
-router.delete('/:id', _delete);
+router.post('/register', register); // se registra el user sin un local asociado
+router.post('/createwlocal',createwLocal), //crea user con local como id de local en campo
+router.get('/', getAll); //claro
+router.get('/current', getCurrent); //claro
+router.get('/:id', getById); //claro
+router.put('/:id', update); //modifica un user username o pw dado su id (pendiente editar su local)
+router.put('/setlocal/:id',setLocal); // setea un local a un user que se registro sin local
+router.delete('/:id', _delete); //elimina un user dada su id
 
 module.exports = router;
 
@@ -20,6 +22,12 @@ function authenticate(req, res, next) {
 }
 
 function register(req, res, next) {
+    userService.create(req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function createwLocal(req, res, next) {
     userService.create(req.body)
         .then(() => res.json({}))
         .catch(err => next(err));
@@ -48,6 +56,15 @@ function update(req, res, next) {
         .then(() => res.json({}))
         .catch(err => next(err));
 }
+
+function setLocal(req, res, next){
+    console.log('yorente');
+    userService.setLocal(req.params.id, req.body)
+    .then(() => res.json({}))
+    .catch(err => next(err));
+}
+
+
 
 function _delete(req, res, next) {
     userService.delete(req.params.id)
