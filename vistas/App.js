@@ -5,7 +5,7 @@ import { Card, Input, Icon, Divider, Header, PricingCard, ListItem } from 'react
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Video } from 'expo-av';
+//import { Video } from 'expo-av';
 
 class RegisterScreen extends React.Component {
   saludo = () => {
@@ -106,7 +106,7 @@ class LoginScreen extends React.Component {
                 padding: 10,
                 marginStart: 10,
                 marginTop: 10,
-                backgroundColor: '',
+                backgroundColor: 'rgba(192, 192, 192, 0.1)',
               }}
             />
           </View>
@@ -123,7 +123,7 @@ class LoginScreen extends React.Component {
                 padding: 10,
                 marginStart: 10,
                 marginTop: 10,
-                backgroundColor: '',
+                backgroundColor: 'rgba(192, 192, 192, 0.1)',
               }}
             />
           </View>
@@ -165,7 +165,7 @@ class HomeScreen extends Component{
       <ImageBackground source= { require('./assets/fondo.png')} style = {styles.container}>
       <ScrollView>
         <Header
-          backgroundColor
+          backgroundColor='rgba(192, 192, 192, 0)'
           leftComponent={{ icon: 'home', color: '#fff' }}
           centerComponent={{ text: 'Nombre Mesero', style: { color: '#fff' } }}
           rightComponent={{ icon: 'exit-to-app', color: '#fff' }}
@@ -207,7 +207,7 @@ class MenuScreen extends Component{
       <ScrollView>
         <View style={styles.body}>
         <Header
-          backgroundColor
+          backgroundColor='rgba(192, 192, 192, 0)'
           leftComponent={{ icon: 'home', color: '#fff' }}
           centerComponent={{ text: 'Nombre Mesero', style: { color: '#fff' } }}
           rightComponent={{ icon: 'exit-to-app', color: '#fff' }}
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   },
 
   texto: {
-    fontFamily: 'Verdana',
+    fontFamily: 'serif',
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
 
   divider: {
     marginVertical: 2,
-    backgroundColor: '#C0C0C0',
+    backgroundColor: 'rgb(192, 192, 192)',
   },
 
   boton: {
@@ -333,8 +333,10 @@ const styles = StyleSheet.create({
   precio:{
     width:250,
     height: 250,
-    textSize: 20,
+    
   },
 
   
 });
+
+
