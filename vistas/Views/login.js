@@ -5,16 +5,26 @@ import { Card, Input, Icon, Divider, Header, PricingCard, ListItem } from 'react
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { FONDO, LOGO} from '../Images';
 
 class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container} >
-        <View style={styles.body}>
+        <Image
+        style={StyleSheet.absoluteFill}
+        source={FONDO}
+      />
         <Header
           backgroundColor='rgba(192, 192, 192, 0)'
           centerComponent={{ text: 'Iniciar Sesión', style: { color: '#fff', fontWeight: 'bold'} }}
         />
+        <View style={styles.body}>
+          <Image 
+          style={{ justifyContent : 'center'}}
+          source={LOGO} 
+          />
+          
 
           <View style={styles.user}>
             <FontAwesome name="user" size={50} color="white" />

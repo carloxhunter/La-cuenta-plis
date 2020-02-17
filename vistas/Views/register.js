@@ -5,6 +5,7 @@ import { Card, Input, Icon, Divider, Header, PricingCard, ListItem } from 'react
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { FONDO, LOGO} from '../Images';
 
 class RegisterScreen extends React.Component {
   saludo = () => {
@@ -13,11 +14,20 @@ class RegisterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container} >
+        <Image
+        style={StyleSheet.absoluteFill}
+        source={FONDO}
+      />
         <Header
           backgroundColor='rgba(192, 192, 192, 0)'
           centerComponent={{ text: 'Registrarse', style: { color: '#fff', fontWeight: 'bold'} }}
         />
-
+        <View style={styles.body}>
+        <Image 
+        style={{ justifyContent : 'center'}}
+        source={LOGO} 
+        />
+        </View>
         <View style={styles.body}>
         <View style={styles.user}>
             <Input

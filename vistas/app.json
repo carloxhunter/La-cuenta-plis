@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "vistas",
-    "slug": "vistas",
+    "name": "Blank Template",
+    "slug": "vistasmoviles",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

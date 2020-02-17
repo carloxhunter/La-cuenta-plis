@@ -5,6 +5,7 @@ import { Card, Input, Icon, Divider, Header,PricingCard } from 'react-native-ele
 import {FontAwesome} from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { FONDO, LOGO} from '../Images';
 
 class MenuScreen extends Component{
   saludo = () => {Alert.alert('Hola belleza!') }
@@ -12,14 +13,24 @@ class MenuScreen extends Component{
 
     return(
       <View style={styles.container} >
+        <Image
+        style={StyleSheet.absoluteFill}
+        source={FONDO}
+      />
       <Header
           backgroundColor='rgba(192, 192, 192, 0)'
           leftComponent={{ icon: 'settings', color: '#fff' }}
           centerComponent={{ text: 'Nombre Mesero', style: { color: '#fff' } }}
           rightComponent={{ icon: 'exit-to-app', color: '#fff' }}
       />
-
       <ScrollView>
+      <View style={styles.body}>
+        <Image 
+        style={{ justifyContent : 'center'}}
+        source={LOGO} 
+        />
+        </View>
+      
         <View style={styles.body}>
         
 

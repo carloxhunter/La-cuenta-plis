@@ -5,6 +5,7 @@ import { Card, Input, Icon, Divider, Header, PricingCard, ListItem } from 'react
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { FONDO, LOGO} from '../Images';
 
 class PromosScreen extends Component{
     saludo = () => {Alert.alert('Hola belleza!') }
@@ -12,14 +13,23 @@ class PromosScreen extends Component{
     
       return(
         <View style={styles.container} >
+          <Image
+        style={StyleSheet.absoluteFill}
+        source={FONDO}
+      />
         <Header
             backgroundColor='rgba(192, 192, 192, 0)'
             leftComponent={{ icon: 'settings', color: '#fff' }}
             centerComponent={{ text: 'Nombre Mesero', style: { color: '#fff' } }}
             rightComponent={{ icon: 'exit-to-app', color: '#fff' }}
         />
-
         <ScrollView>
+        <View style={styles.body}>
+        <Image 
+        style={{ justifyContent : 'center'}}
+        source={LOGO} 
+        />
+        </View>
           <View style={styles.body}>
 
             <PricingCard
