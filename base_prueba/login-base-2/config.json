@@ -1,4 +1,4 @@
 ﻿{
-    "connectionString": "mongodb://127.0.1.1:27017/user_auth",
+    "connectionString": "mongodb+srv://tioaceite:tioaceite123@restaurant-1dl0c.mongodb.net/test?retryWrites=true&w=majority",
     "secret": "dale_yiro_crack"
 }
