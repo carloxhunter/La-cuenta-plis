@@ -6,8 +6,127 @@ import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { FONDO, LOGO} from '../Images';
+import * as SecureStore from 'expo-secure-store';
 
-class LoginScreen extends React.Component {
+class LoginScreen extends React.Component<Props> {
+  constructor(props){
+    super(props);
+    this.login = this.login.bind(this);
+    this.state = {username: '',
+                  password:'',
+                  tokentest:'',
+                  baseUrl: 'http://192.168.0.10:4000/users/authenticate' };
+
+
+  }
+
+   onClickListener = async (viewId) => {
+    //console.log("mm")
+    if(this.state.username || this.state.username != ""){
+      if(this.state.password || this.state.password != ""){
+        //console.log("turko")
+        
+            await this.login()
+            
+  
+         
+      
+        //this.props.navigation.navigate('Homefunct')
+      }else{Alert.alert("password");}
+  }else {Alert.alert("username");}}
+
+
+
+
+
+
+
+  async login(){
+    var that = this;
+    var url = that.state.baseUrl;
+    console.log(url);
+
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({"username":that.state.username,"password":that.state.password});
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch(url, requestOptions)
+      .then(response => response.text())
+      .then( async(result) => {
+        
+        var tokenfield = JSON.parse(result).token
+        //var tokenstr = JSON.stringify(tokenfield)
+        //console.log("result: "+result+" tokenfield: "+tokenfield+" tokenstr: "+tokenstr);
+        if(typeof tokenfield === 'undefined' || tokenfield === null){
+          console.log("error")
+          Alert.alert("Error")
+        }
+        else{
+        //var tokenfield = JSON.parse(result).token
+        //console.log(result)
+        //var tokenstr = JSON.stringify(tokenfield)
+        //Alert.alert(tokenstr)
+        
+        //console.log(tokenfield)
+        //console.log("yiro"+tokenstr+"pata")
+        
+          var idfield = JSON.parse(result).id
+          console.log(idfield+" "+typeof idfield)
+         await SecureStore.setItemAsync('secure_token',tokenfield)
+        await SecureStore.setItemAsync('id', idfield)
+        
+        
+        
+        //const token = await SecureStore.getItemAsync('secure_token');
+        //console.log("yiro"+tokenstr+"pata")
+        //that.state.tokentest=tokenfield
+          that.setState({tokentest:tokenfield})
+          Alert.alert(
+            'Su Token es',
+            tokenfield, // <- this part is optional, you can pass an empty string
+            [
+              {text: 'Ir a Home', onPress: () => this.props.navigation.navigate('Homefunct')},
+            ],
+            {cancelable: false},
+          );
+        }
+
+
+
+      })
+      .catch(error => {
+        Alert.alert("Error")
+        console.log('error', error)});
+
+
+  }
+
+
+/*
+onPress={() => this.props.navigation.navigate('Homefunct')} />
+*/
+
+ /* this.onClickListener
+                //var that = this;
+                console.log("yiro")
+                 
+                 console.log(this.state.tokentest)
+                const token =  SecureStore.getItemAsync('secure_token');
+                //Alert.alert("Token",that.state.tokentest, [{title:"ok",
+                //onPress:()=> that.props.navigation.navigate("Homefunct")}])
+              }*/
+
+
+
   render() {
     return (
       <View style={styles.container} >
@@ -41,6 +160,7 @@ class LoginScreen extends React.Component {
                 marginTop: 10,
                 backgroundColor: 'rgba(192, 192, 192, 0.1)',
               }}
+              onChangeText={(username) => this.setState({username})}
             />
           </View>
 
@@ -49,6 +169,8 @@ class LoginScreen extends React.Component {
             <TextInput
               placeholder="Ingrese Contraseña"
               placeholderTextColor="white"
+              
+              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
               style={{
                 borderWidth: 2,
                 borderColor: 'white',
@@ -57,13 +179,19 @@ class LoginScreen extends React.Component {
                 marginStart: 10,
                 marginTop: 10,
                 backgroundColor: 'rgba(192, 192, 192, 0.1)',
+                
               }}
+              onChangeText={(password) => this.setState({password})}
             />
           </View>
         </View>
         <View style={styles.boton}>
           <Button color="#9ACD32" title="Ingresar!" 
-              onPress={() => this.props.navigation.navigate('HomeMesero')} />
+              onPress= {  this.onClickListener}/>
+
+    
+
+
         </View>
 
         <Divider style={styles.divider} />

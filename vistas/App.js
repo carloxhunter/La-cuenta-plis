@@ -9,8 +9,10 @@ import LoginScreen from './Views/login';
 import RegisterScreen from './Views/register';
 import HomeScreen from './Views/home';
 import MenuScreen from './Views/menu';
+import MenuScreen2 from './Views/menu2';
 import PedidosScreen from './Views/pedidos';
 import PromosScreen from './Views/promos';
+import HomefunctScreen from './Views/home2';
 
 
 const RootStack = createStackNavigator(
@@ -18,7 +20,9 @@ const RootStack = createStackNavigator(
     Ingresar: LoginScreen,
     Registrar: RegisterScreen,
     HomeMesero: HomeScreen,
+    Homefunct: HomefunctScreen,
     Menú: MenuScreen,
+    Menu2:MenuScreen2,
     Pedidos: PedidosScreen,
     Promociones: PromosScreen,
   },
