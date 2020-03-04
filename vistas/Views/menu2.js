@@ -22,7 +22,7 @@ class HomeScreen extends Component{
           desc:'',
           loc:'',
           prods:'',
-          baseUrl:'http://192.168.0.10:4000'};
+          baseUrl:'http://192.168.43.157:4000'};
     
     //this.user_data();
     }

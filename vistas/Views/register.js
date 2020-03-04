@@ -20,7 +20,7 @@ class RegisterScreen extends React.Component<Props> {
                   password:'',
                   firstName:'',
                   lastName:'',
-                  baseUrl: 'http://192.168.0.10:4000/users/register' };
+                  baseUrl: 'http://192.168.43.157:4000/users/register' };
  
     }
  
@@ -99,6 +99,7 @@ class RegisterScreen extends React.Component<Props> {
     Alert.alert('Hola belleza!');
   }
 
+  
   render() {
     return (
       <View style={styles.container} >
@@ -116,7 +117,7 @@ class RegisterScreen extends React.Component<Props> {
         source={LOGO} 
         />
         </View>
-        <View style={styles.body}>
+        
         <View style={styles.user}>
             <Input
                 leftIcon={<FontAwesome name="user" size={20} color="white" />}
@@ -124,7 +125,7 @@ class RegisterScreen extends React.Component<Props> {
                 placeholder=" Nombre Usuario"
                 placeholderTextColor="white"
                 maxLength={15}
-                inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
+                inputStyle={{ color: 'white', padding: 5, marginTop: 5 }}
                 onChangeText={(username) => this.setState({username})}
               />
           </View>
@@ -136,7 +137,7 @@ class RegisterScreen extends React.Component<Props> {
               placeholder=" Nombre "
               placeholderTextColor="white"
               maxLength={15}
-              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
+              inputStyle={{ color: 'white', padding: 5, marginTop: 5 }}
               onChangeText={(firstName) => this.setState({firstName})}
             />
           </View>
@@ -148,7 +149,7 @@ class RegisterScreen extends React.Component<Props> {
               placeholder=" Apellido "
               placeholderTextColor="white"
               maxLength={15}
-              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
+              inputStyle={{ color: 'white', padding: 5, marginTop: 5 }}
               onChangeText={(lastName) => this.setState({lastName})}
             />
           </View>
@@ -158,14 +159,14 @@ class RegisterScreen extends React.Component<Props> {
               secureTextEntry={true}
               leftIcon={<FontAwesome name="key" size={20} color="white" />}
               label="Contraseña"
-              placeholder="*********"
+              placeholder="***"
               placeholderTextColor="white"
               maxLength={15}
-              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
+              inputStyle={{ color: 'white', padding: 5, marginTop: 5 }}
               onChangeText={(password) => this.setState({password})}
             />
           </View>
-        </View>
+        
 
 
 
@@ -190,6 +191,7 @@ class RegisterScreen extends React.Component<Props> {
             <Button
               color="#4682B4"
               title="Ingresar!"
+              marginVertical="20"
               onPress={() => this.props.navigation.navigate('Ingresar')}
               style={styles.boton}
             />
@@ -216,15 +218,15 @@ const styles = StyleSheet.create({
   },
 
   user: {
-    flex: 1,
+    flex: 0.8,
     flexDirection: 'row',
     marginTop: 0,
-    padding: 5,
+    padding: 0,
     alignItems: 'center',
   },
 
   footer: {
-    flex: 0.3,
+    flex: 1,
     flexDirection: 'row',
     marginTop: 0,
     padding: 5,
@@ -237,7 +239,8 @@ const styles = StyleSheet.create({
 
   footerRight: {
     flex: 1,
-    marginEnd: 5,
+    marginStart: 10,
+    marginEnd: 10,
   },
 
   texto: {
