@@ -1,4 +1,8 @@
 ﻿{
+<<<<<<< HEAD
     "connectionString": "mongodb+srv://tioaceite:tioaceite123@restaurant-1dl0c.mongodb.net/test?retryWrites=true&w=majority",
+=======
+    "connectionString": "mongodb+srv://lili:lili123@restaurant-1dl0c.mongodb.net/test?retryWrites=true&w=majority",
+>>>>>>> rama_conection
     "secret": "dale_yiro_crack"
 }
