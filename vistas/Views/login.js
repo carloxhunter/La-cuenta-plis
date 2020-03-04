@@ -15,7 +15,7 @@ class LoginScreen extends React.Component<Props> {
     this.state = {username: '',
                   password:'',
                   tokentest:'',
-                  baseUrl: 'http://192.168.0.10:4000/users/authenticate' };
+                  baseUrl: 'http://192.168.43.157:4000/users/authenticate' };
 
 
   }
@@ -158,6 +158,8 @@ onPress={() => this.props.navigation.navigate('Homefunct')} />
                 padding: 10,
                 marginStart: 10,
                 marginTop: 10,
+                fontSize:20,
+                color:'white',
                 backgroundColor: 'rgba(192, 192, 192, 0.1)',
               }}
               onChangeText={(username) => this.setState({username})}
@@ -167,17 +169,20 @@ onPress={() => this.props.navigation.navigate('Homefunct')} />
           <View style={styles.user}>
             <FontAwesome name="key" size={50} color="white" />
             <TextInput
+            secureTextEntry={true}
               placeholder="Ingrese Contraseña"
               placeholderTextColor="white"
               
-              inputStyle={{ color: 'white', padding: 10, marginTop: 10 }}
+              inputStyle={{ color: 'white', padding: 10, marginTop: 10, textSize:20 }}
               style={{
+                fontSize:20,
                 borderWidth: 2,
                 borderColor: 'white',
                 borderRadius: 5,
                 padding: 10,
                 marginStart: 10,
                 marginTop: 10,
+                color:'white',
                 backgroundColor: 'rgba(192, 192, 192, 0.1)',
                 
               }}

@@ -9,7 +9,7 @@ import { FONDO, LOGO, HAM} from '../Images';
 import * as SecureStore from 'expo-secure-store';
 
 class Home2 extends Component<Props>{
-  //saludo = () => {Alert.alert('Hola belleza!') }
+
   constructor(props){
     super(props);
     this.user_data=this.user_data.bind(this);
@@ -21,7 +21,7 @@ class Home2 extends Component<Props>{
           localname:'',
           idcurrentuser:'',
           tokencurrentuser:'',
-          baseUrl:'http://192.168.0.10:4000'};
+          baseUrl:'http://192.168.43.157:4000'};
     
     //this.user_data();
     }
@@ -132,9 +132,12 @@ class Home2 extends Component<Props>{
       <Header
           backgroundColor='rgba(192, 192, 192, 0)'
           leftComponent={{ icon: 'settings', color: '#fff' }}
-          centerComponent={{ text: this.state.nombreuser, style: { color: '#fff' } }}
-          rightComponent={{ icon: 'exit-to-app', color: '#fff' } } 
+          centerComponent={{ text: this.state.nombreuser, style: { color: '#fff', fontSize: 20 } }}
+          rightComponent={{ icon: 'exit-to-app', color: '#fff', onPress:() => this.props.navigation.navigate('Ingresar') }} 
       />
+
+  
+
       <ScrollView>
         
         <View style={styles.body}>
@@ -153,18 +156,25 @@ class Home2 extends Component<Props>{
           {this.state.firstname+' '+this.state.lastname}
         </Text>
 
-       
-        <Image 
-        style={{ justifyContent : 'center'}}
+        <View style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+                <Image 
         source={HAM} 
         />
+            </View>
+
+        
         
         </ScrollView>
 
         
 
-      <View style={styles.footerRight}>
-            
+      <View style={{borderRadius: 5,
+    padding: 20,
+    alignItems: 'center',
+    fontSize: 15}}>
             <Button
               color="#4682B4"
               title="Ir a local!"
@@ -173,7 +183,7 @@ class Home2 extends Component<Props>{
                 else {this.props.navigation.navigate('HomeMesero')}}
               
               }
-              style={styles.boton}
+             
             />
           </View>
 
@@ -258,12 +268,13 @@ const styles = StyleSheet.create({
     
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
     color: '#F5FCFF',
   },
   instructions: {
+    fontSize: 20,
     textAlign: 'center',
     color: '#F5FCFF',
     marginBottom: 5,
